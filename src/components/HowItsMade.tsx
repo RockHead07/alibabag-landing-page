@@ -24,19 +24,23 @@ export function HowItsMade() {
   return (
     <section
       id="proses"
+      className="py-20 px-8 lg:px-12"
       style={{ backgroundColor: "#C0C9EE" }}
     >
       {/* PART A — Full-width giant text with description floating on top */}
-      <div className="relative mx-auto max-w-7xl px-8 pt-16 pb-4">
+      <div
+        className="relative mx-auto max-w-7xl pb-8"
+        style={{ overflow: "visible" }}
+      >
         {/* Giant decorative text — full width, overflows naturally */}
         <p
           className="select-none font-black uppercase whitespace-nowrap pointer-events-none"
           style={{
-            fontSize: "clamp(72px, 11vw, 150px)",
+            fontSize: "clamp(52px, 7.5vw, 110px)",
             lineHeight: 0.88,
-            letterSpacing: "-4px",
+            letterSpacing: "-3px",
             color: "#FAFAFA",
-            opacity: 0.5,
+            opacity: 0.52,
           }}
         >
           DARI TIKAR
@@ -46,7 +50,7 @@ export function HowItsMade() {
 
         {/* Description — absolutely positioned on top, right side */}
         <div
-          className="absolute right-8 z-10"
+          className="absolute right-8 z-10 hidden md:block"
           style={{
             top: "50%",
             transform: "translateY(-50%)",
@@ -54,10 +58,31 @@ export function HowItsMade() {
           }}
         >
           <h3
-            className="uppercase tracking-wide"
+            className="uppercase tracking-wide font-extrabold"
             style={{
               fontSize: 15,
-              fontWeight: 700,
+              color: "#1A1A1A",
+              marginBottom: 12,
+            }}
+          >
+            KERAJINAN DI SETIAP LANGKAH
+          </h3>
+          <p
+            className="leading-relaxed"
+            style={{ fontSize: 13, color: "#1A1A1A" }}
+          >
+            Dari pemilihan tikar berkualitas hingga proses anyaman yang
+            teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
+            sampai ke tanganmu dalam kondisi terbaik.
+          </p>
+        </div>
+
+        {/* Mobile-only description (below giant text) */}
+        <div className="mt-6 md:hidden">
+          <h3
+            className="uppercase tracking-wide font-extrabold"
+            style={{
+              fontSize: 15,
               color: "#1A1A1A",
               marginBottom: 12,
             }}
@@ -76,8 +101,8 @@ export function HowItsMade() {
       </div>
 
       {/* PART B — 3 cards */}
-      <div className="mx-auto max-w-7xl px-8 pb-16">
-        <div className="relative grid grid-cols-3 gap-5">
+      <div className="mx-auto max-w-7xl mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {steps.map((s, i) => (
             <article
               key={s.label}
@@ -96,13 +121,13 @@ export function HowItsMade() {
               />
               <div className="p-4">
                 <p
-                  className="text-[12px] font-bold uppercase tracking-wide"
+                  className="text-xs font-bold uppercase tracking-wide"
                   style={{ color: "#1A1A1A" }}
                 >
                   {s.label}
                 </p>
                 <p
-                  className="mt-1.5 text-[12px] leading-relaxed"
+                  className="mt-1.5 text-xs leading-relaxed"
                   style={{ color: "#898AC4" }}
                 >
                   {s.sub}
@@ -112,7 +137,7 @@ export function HowItsMade() {
               {/* Badge on last card */}
               {i === steps.length - 1 && (
                 <div
-                  className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full px-3 py-1.5"
+                  className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full px-3 py-1"
                   style={{
                     backgroundColor: "white",
                     boxShadow: "0 2px 10px rgba(0,0,0,0.10)",
@@ -120,7 +145,7 @@ export function HowItsMade() {
                 >
                   <span className="text-xs">🇮🇩</span>
                   <span
-                    className="text-[11px] font-semibold"
+                    className="text-xs font-semibold"
                     style={{ color: "#1A1A1A" }}
                   >
                     Local Craft
