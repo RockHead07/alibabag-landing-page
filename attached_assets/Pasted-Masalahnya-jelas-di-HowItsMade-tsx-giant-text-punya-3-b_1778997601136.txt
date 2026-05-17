@@ -1,4 +1,6 @@
-import processMaterial from "@/assets/process-material.jpg";
+Masalahnya jelas — di HowItsMade.tsx, giant text punya 3 baris (Dari, Tikar, Ke Tangan) dengan font size clamp(60px, 10vw, 140px) yang terlalu tinggi. Ini yang bikin layout berantakan.
+Ini kode fix langsung — replace seluruh isi src/components/HowItsMade.tsx:
+tsximport processMaterial from "@/assets/process-material.jpg";
 import processWeaving from "@/assets/process-weaving.jpg";
 import processPacked from "@/assets/process-packed.jpg";
 
