@@ -25,47 +25,53 @@ export function HowItsMade() {
     <section
       id="proses"
       style={{ backgroundColor: "#C0C9EE" }}
-      className="overflow-hidden"
     >
-      {/* PART A — Giant text LEFT + description RIGHT */}
-      <div className="relative mx-auto max-w-7xl px-8 pt-16 pb-10">
-        <div
-          className="grid items-center"
-          style={{ gridTemplateColumns: "58% 42%" }}
+      {/* PART A — Full-width giant text with description floating on top */}
+      <div className="relative mx-auto max-w-7xl px-8 pt-16 pb-4">
+        {/* Giant decorative text — full width, overflows naturally */}
+        <p
+          className="select-none font-black uppercase whitespace-nowrap pointer-events-none"
+          style={{
+            fontSize: "clamp(72px, 11vw, 150px)",
+            lineHeight: 0.88,
+            letterSpacing: "-4px",
+            color: "#FAFAFA",
+            opacity: 0.5,
+          }}
         >
-          {/* LEFT — giant decorative text, 2 lines only */}
-          <div className="overflow-hidden">
-            <p
-              className="select-none font-black uppercase leading-[0.88] tracking-[-3px] whitespace-nowrap"
-              style={{
-                fontSize: "clamp(52px, 7.5vw, 112px)",
-                color: "#FAFAFA",
-                opacity: 0.52,
-              }}
-            >
-              DARI TIKAR
-              <br />
-              KE TANGANMU
-            </p>
-          </div>
+          DARI TIKAR
+          <br />
+          KE TANGANMU
+        </p>
 
-          {/* RIGHT — heading + paragraph, z above text */}
-          <div className="relative z-10 pl-8">
-            <h3
-              className="text-[17px] font-bold uppercase tracking-wide"
-              style={{ color: "#1A1A1A" }}
-            >
-              Kerajinan di Setiap Langkah
-            </h3>
-            <p
-              className="mt-3 text-[13px] leading-relaxed"
-              style={{ color: "#1A1A1A", maxWidth: 340 }}
-            >
-              Dari pemilihan tikar berkualitas hingga proses anyaman yang
-              teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
-              sampai ke tanganmu dalam kondisi terbaik.
-            </p>
-          </div>
+        {/* Description — absolutely positioned on top, right side */}
+        <div
+          className="absolute right-8 z-10"
+          style={{
+            top: "50%",
+            transform: "translateY(-50%)",
+            maxWidth: 340,
+          }}
+        >
+          <h3
+            className="uppercase tracking-wide"
+            style={{
+              fontSize: 15,
+              fontWeight: 700,
+              color: "#1A1A1A",
+              marginBottom: 12,
+            }}
+          >
+            KERAJINAN DI SETIAP LANGKAH
+          </h3>
+          <p
+            className="leading-relaxed"
+            style={{ fontSize: 13, color: "#1A1A1A" }}
+          >
+            Dari pemilihan tikar berkualitas hingga proses anyaman yang
+            teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
+            sampai ke tanganmu dalam kondisi terbaik.
+          </p>
         </div>
       </div>
 
