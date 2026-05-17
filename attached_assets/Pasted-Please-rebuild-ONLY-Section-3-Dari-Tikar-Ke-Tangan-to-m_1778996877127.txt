@@ -1,0 +1,72 @@
+Please rebuild ONLY Section 3 ("Dari Tikar Ke Tangan") 
+to more closely match the reference image layout. 
+Do not change any other sections.
+
+=== SECTION 3 — FIX ===
+
+PART A — Full width, background: #C0C9EE, py-16 px-12
+
+Layout: 2 column, vertically centered
+
+LEFT column (60% width):
+- Giant decorative text, ONLY 2 lines (not 4),
+  font-size: clamp(80px, 12vw, 160px),
+  font-weight: 900, color: #FAFAFA, opacity: 55%,
+  uppercase, line-height: 0.9, letter-spacing: -2px:
+  "DARI TIKAR
+   KE TANGANMU"
+- Text should overflow slightly to the right, 
+  like Grapy's "FROM FARM TO YOUR DOOR"
+
+RIGHT column (40% width), vertically centered 
+to the middle of the giant text:
+- Heading bold uppercase, font-size: xl, 
+  font-weight: 700, color: #1A1A1A, mb-3:
+  "KERAJINAN DI SETIAP LANGKAH"
+- Body text, color: #1A1A1A, font-size: sm, 
+  line-height: relaxed, max-width: 360px:
+  "Dari pemilihan tikar berkualitas hingga proses 
+  anyaman yang teliti, setiap AlibaBag dibuat 
+  dengan penuh perhatian agar sampai ke tanganmu 
+  dalam kondisi terbaik."
+
+PART B — 3-column image cards, mt-8,
+same section background #C0C9EE, px-12 pb-16
+
+Cards layout: equal width, gap-6, items-start
+
+Card 1:
+- Image: existing placeholder (tikar texture)
+- Card bg: #FAFAFA, rounded-2xl, overflow-hidden
+- Shadow: shadow-md
+- Image height: 220px, object-cover, w-full
+- Content padding: p-4
+- Label: bold uppercase, font-size: sm, 
+  color: #1A1A1A, mt-2:
+  "DIPILIH DENGAN TELITI"
+- Subtext: font-size: xs, color: #898AC4, mt-1:
+  "Bahan tikar dipilih satu per satu untuk 
+  memastikan kualitas dan ketahanan terbaik."
+
+Card 2:
+- Image: existing placeholder (weaving hands)
+- Same card style as Card 1
+- Label: "DIANYAM DENGAN TANGAN"
+- Subtext: "Setiap tas dianyam secara manual oleh 
+  pengrajin lokal, menjadikannya benar-benar unik."
+
+Card 3:
+- Image: existing placeholder (finished bag)
+- Same card style as Card 1
+- Label: "SIAP UNTUK KAMU"
+- Subtext: "AlibaBag dikemas dengan rapi dan siap 
+  dikirimkan langsung ke tanganmu."
+- Add floating badge bottom-right OUTSIDE the card:
+  - rounded-full, bg-white, shadow-md, px-3 py-1
+  - Small flag emoji + text "Local Craft 🇮🇩"
+  - font-size: xs, font-weight: 600
+  - position: absolute, bottom-4, right-4
+
+Overall section position: relative 
+(to allow absolute badge positioning)
+No changes to Section 1 and Section 2.
