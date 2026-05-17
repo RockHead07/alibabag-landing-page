@@ -1,26 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/Hero";
+import { OurStory } from "@/components/OurStory";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "AlibaBag — Anyaman Lokal, Gaya Global" },
+      {
+        name: "description",
+        content:
+          "AlibaBag: tas tangan handmade dari anyaman tikar. Eco-friendly, unik, dan dibuat dengan bangga di Indonesia.",
+      },
+      { property: "og:title", content: "AlibaBag — Anyaman Lokal, Gaya Global" },
+      {
+        property: "og:description",
+        content: "Handmade woven tikar handbags from Indonesia.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <main>
+      <Hero />
+      <OurStory />
+    </main>
+  );
 }
