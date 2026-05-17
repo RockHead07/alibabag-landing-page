@@ -1,0 +1,90 @@
+Fix ONLY Section 3 layout. The current version has the giant 
+text overflowing incorrectly and overlapping the right column 
+text. Refer to the attached Grapy reference image.
+
+=== SECTION 3 PART A FIX ===
+
+Container: full width, background #C0C9EE, 
+position: relative, overflow: hidden,
+padding: 60px 48px
+
+Use CSS Grid: grid-cols-[55%_45%], items-center, gap-0
+
+LEFT column:
+- Giant text, max 2 lines:
+  "DARI TIKAR
+   KE TANGANMU"
+- font-size: clamp(48px, 7vw, 110px)
+  (smaller than before — this is the key fix)
+- font-weight: 900
+- color: #FAFAFA
+- opacity: 0.5
+- line-height: 0.88
+- letter-spacing: -3px
+- uppercase
+- Do NOT let it overflow into right column
+- width: 100% of left column only
+
+RIGHT column:
+- padding-left: 32px
+- z-index: 10, position: relative
+- Heading: "KERAJINAN DI SETIAP LANGKAH"
+  font-size: 18px, font-weight: 700, 
+  color: #1A1A1A, margin-bottom: 12px
+- Paragraph: font-size: 14px, color: #1A1A1A,
+  line-height: 1.7, max-width: 340px:
+  "Dari pemilihan tikar berkualitas hingga proses 
+  anyaman yang teliti, setiap AlibaBag dibuat dengan 
+  penuh perhatian agar sampai ke tanganmu dalam 
+  kondisi terbaik."
+
+=== SECTION 3 PART B FIX ===
+
+Container: background #C0C9EE, 
+padding: 0px 48px 60px 48px
+
+3-column grid: grid-cols-3, gap-5
+
+ALL 3 cards must be fully visible — 
+do not let any card overflow or get cut off.
+
+Card style (apply to all 3):
+- background: #FAFAFA
+- border-radius: 16px
+- overflow: hidden
+- box-shadow: 0 4px 16px rgba(0,0,0,0.08)
+- width: 100%
+
+Image inside card:
+- height: 200px
+- width: 100%
+- object-fit: cover
+
+Text inside card (padding: 16px):
+- Label: font-size: 13px, font-weight: 700, 
+  color: #1A1A1A, text-transform: uppercase, 
+  margin-bottom: 6px
+- Subtext: font-size: 12px, color: #898AC4, 
+  line-height: 1.5
+
+Card 1: "DIPILIH DENGAN TELITI" / 
+"Bahan tikar dipilih satu per satu untuk 
+memastikan kualitas dan ketahanan terbaik."
+
+Card 2: "DIANYAM DENGAN TANGAN" / 
+"Setiap tas dianyam secara manual oleh pengrajin 
+lokal, menjadikannya benar-benar unik."
+
+Card 3: "SIAP UNTUK KAMU" / 
+"AlibaBag dikemas dengan rapi dan siap 
+dikirimkan langsung ke tanganmu."
+
+Floating badge on Card 3:
+- position: absolute, bottom: 12px, right: 12px
+- background: white, border-radius: 999px
+- padding: 4px 10px, box-shadow: 0 2px 8px rgba(0,0,0,0.12)
+- font-size: 11px, font-weight: 600, color: #1A1A1A
+- content: "🇮🇩 Local Craft"
+
+Do not change Section 1 and Section 2.
+Attach the Grapy reference image when sending this prompt.
