@@ -76,12 +76,14 @@ export function Testimonial() {
         <div
           className="testimonial-card"
           style={{
-            backgroundColor: "#C0C9EE",
-            borderRadius: 24,
+            backgroundColor: "#FFFFFF",
+            borderRadius: 28,
             overflow: "hidden",
             width: "100%",
-            minHeight: 320,
-            boxShadow: "0 8px 40px rgba(0,0,0,0.12)",
+            minHeight: 340,
+            boxShadow:
+              "0 30px 60px -20px rgba(107,33,214,0.25), 0 12px 32px -8px rgba(17,17,17,0.12)",
+            border: "1px solid rgba(255,255,255,0.6)",
           }}
         >
           <div
