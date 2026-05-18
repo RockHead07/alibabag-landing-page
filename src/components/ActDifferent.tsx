@@ -53,14 +53,14 @@ export function ActDifferent() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative flex items-center justify-center h-full overflow-visible py-8 md:py-0">
+        <div className="relative flex items-center justify-center h-full overflow-visible py-8 md:py-0 md:pr-8">
           <img
             src={heroBag}
             alt="AlibaBag handmade woven tikar handbag"
-            className="object-contain mx-auto w-4/5 md:w-[90%]"
+            className="object-contain mx-auto w-full md:w-[110%] md:scale-110"
             style={{
-              maxWidth: "520px",
-              filter: "drop-shadow(0 24px 48px rgba(107,33,214,0.20))",
+              maxWidth: "780px",
+              filter: "drop-shadow(0 32px 64px rgba(107,33,214,0.28))",
             }}
           />
         </div>
