@@ -50,7 +50,7 @@ export function Pricing() {
               marginBottom: 16,
             }}
           >
-            DARI TIKAR KE TANGANMU, DENGAN HARGA YANG RAMAH
+            HARGA RAMAH, KUALITAS PREMIUM
           </h2>
 
           {/* Description */}
