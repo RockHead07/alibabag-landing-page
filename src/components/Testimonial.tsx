@@ -52,9 +52,9 @@ export function Testimonial() {
 
   return (
     <section
-      style={{ backgroundColor: "#FAFAFA", padding: "96px 32px" }}
+      style={{ backgroundColor: "#EEF0FB", padding: "112px 32px" }}
     >
-      <div style={{ maxWidth: 1152, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
         {/* ── Heading ── */}
         <h2
