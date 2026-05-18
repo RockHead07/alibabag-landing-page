@@ -34,7 +34,7 @@ function Index() {
       <HowItsMade />
       <Pricing />
       <Testimonial />
-      <CtaOrder />
+      <ActDifferent />
       <Footer />
     </main>
   );
