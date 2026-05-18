@@ -50,7 +50,7 @@ export function Pricing() {
               marginBottom: 16,
             }}
           >
-            HARGA RAMAH, KUALITAS PREMIUM
+            DARI TIKAR KE TANGANMU, DENGAN HARGA YANG RAMAH
           </h2>
 
           {/* Description */}
@@ -160,26 +160,26 @@ export function Pricing() {
             className="pricing-bag-img"
           />
 
-          {/* Badge 1 — top right */}
+          {/* Badge 1 — top left */}
           <span
             className="pricing-badge pricing-badge--1"
-            style={{ top: "8%", right: "0%" }}
+            style={{ top: "15%", left: "-10%" }}
           >
-            🌿 Eco-Friendly
+            Eco-Friendly
           </span>
 
-          {/* Badge 2 — middle left */}
+          {/* Badge 2 — right middle */}
           <span
             className="pricing-badge pricing-badge--2"
-            style={{ top: "48%", left: "0%" }}
+            style={{ top: "45%", right: "-5%" }}
           >
-            ✋ Handmade
+            Handmade ✋
           </span>
 
-          {/* Badge 3 — bottom right */}
+          {/* Badge 3 — bottom left */}
           <span
             className="pricing-badge pricing-badge--3"
-            style={{ bottom: "10%", right: "4%" }}
+            style={{ bottom: "20%", left: "-8%" }}
           >
             🇮🇩 Local Pride
           </span>

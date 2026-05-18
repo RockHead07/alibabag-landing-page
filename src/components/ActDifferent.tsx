@@ -4,9 +4,9 @@ export function ActDifferent() {
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ backgroundColor: "#C0C9EE", minHeight: "640px" }}
+      style={{ backgroundColor: "#C0C9EE", minHeight: "580px" }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-[50%_50%] items-center h-full">
+      <div className="grid grid-cols-1 md:grid-cols-[55%_45%] items-center h-full">
         {/* LEFT */}
         <div className="flex flex-col justify-center px-8 py-16 md:pl-10 md:py-20 lg:pl-16">
           <h2
@@ -53,14 +53,14 @@ export function ActDifferent() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative flex items-center justify-center h-full overflow-visible py-8 md:py-0 md:pr-8">
+        <div className="relative flex items-center justify-center h-full overflow-visible py-8 md:py-0">
           <img
             src={heroBag}
             alt="AlibaBag handmade woven tikar handbag"
-            className="object-contain mx-auto w-full md:w-[110%] md:scale-110"
+            className="object-contain mx-auto w-4/5 md:w-[90%]"
             style={{
-              maxWidth: "780px",
-              filter: "drop-shadow(0 32px 64px rgba(107,33,214,0.28))",
+              maxWidth: "520px",
+              filter: "drop-shadow(0 24px 48px rgba(107,33,214,0.20))",
             }}
           />
         </div>

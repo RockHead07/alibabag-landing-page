@@ -52,9 +52,9 @@ export function Testimonial() {
 
   return (
     <section
-      style={{ backgroundColor: "#EEF0FB", padding: "112px 32px" }}
+      style={{ backgroundColor: "#FAFAFA", padding: "96px 32px" }}
     >
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1152, margin: "0 auto" }}>
 
         {/* ── Heading ── */}
         <h2
@@ -76,14 +76,12 @@ export function Testimonial() {
         <div
           className="testimonial-card"
           style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: 28,
+            backgroundColor: "#C0C9EE",
+            borderRadius: 24,
             overflow: "hidden",
             width: "100%",
-            minHeight: 340,
-            boxShadow:
-              "0 30px 60px -20px rgba(107,33,214,0.25), 0 12px 32px -8px rgba(17,17,17,0.12)",
-            border: "1px solid rgba(255,255,255,0.6)",
+            minHeight: 320,
+            boxShadow: "0 8px 40px rgba(0,0,0,0.12)",
           }}
         >
           <div
