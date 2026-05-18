@@ -4,9 +4,9 @@ export function ActDifferent() {
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ backgroundColor: "#C0C9EE", minHeight: "580px" }}
+      style={{ backgroundColor: "#C0C9EE", minHeight: "640px" }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-[55%_45%] items-center h-full">
+      <div className="grid grid-cols-1 md:grid-cols-[50%_50%] items-center h-full">
         {/* LEFT */}
         <div className="flex flex-col justify-center px-8 py-16 md:pl-10 md:py-20 lg:pl-16">
           <h2
