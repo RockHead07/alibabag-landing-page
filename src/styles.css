@@ -85,3 +85,9 @@
   color: #A2AADB;
   opacity: 0.3;
 }
+
+@keyframes slideDownFade {
+  0% { transform: translateY(-120%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
