@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 
 const links = [
@@ -10,19 +9,15 @@ const links = [
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <>
       {/* Section 1 header — Logo + CTA scroll away with hero, never re-appear */}
-      <header className="absolute inset-x-0 top-0 z-30">
+      <header
+        className={[
+          "fixed inset-x-0 top-0 z-[100]",
+          "bg-white/0 backdrop-blur-xl backdrop-saturate-150 border-b border-white/35",
+        ].join(" ")}
+      >
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <a
             href="#home"
@@ -32,18 +27,15 @@ export function Navbar() {
             AlibaBag<span style={{ color: "#6B21D6" }}>.</span>
           </a>
 
-          <ul
-            className="mx-auto hidden w-fit items-center gap-1 rounded-full bg-white/40 px-2 py-1 backdrop-blur-sm md:flex"
-            style={{ visibility: isScrolled ? "hidden" : "visible" }}
-          >
+          <ul className="mx-auto hidden w-fit items-center gap-6 md:flex">
             {links.map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}
-                  className="rounded-full px-5 py-2 text-sm font-medium transition-colors"
+                  className="text-sm font-medium transition-colors"
                   style={
                     l.active
-                      ? { backgroundColor: "#6B21D6", color: "#FAFAFA" }
+                      ? { color: "#6B21D6" }
                       : { color: "rgba(26,26,26,0.8)" }
                   }
                 >
@@ -71,37 +63,6 @@ export function Navbar() {
           </div>
         </div>
       </header>
-
-      {/* Floating navbar — only appears after scroll */}
-      <div
-        className={[
-          "pointer-events-none fixed inset-x-0 top-4 z-40 mx-auto hidden w-fit transition-all duration-500 ease-out md:block",
-          isScrolled
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-6 opacity-0",
-        ].join(" ")}
-      >
-        <ul
-          className="pointer-events-auto flex items-center gap-1 bg-white/85 px-2 py-1 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.25)] backdrop-blur-md"
-          style={{ borderRadius: "14px" }}
-        >
-          {links.map((l) => (
-            <li key={l.label}>
-              <a
-                href={l.href}
-                className="rounded-[10px] px-5 py-2 text-sm font-medium transition-colors"
-                style={
-                  l.active
-                    ? { backgroundColor: "#6B21D6", color: "#FAFAFA" }
-                    : { color: "rgba(26,26,26,0.8)" }
-                }
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
     </>
   );
 }
