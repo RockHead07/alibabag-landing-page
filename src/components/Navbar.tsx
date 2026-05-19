@@ -22,7 +22,7 @@ export function Navbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-30">
       <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
-        {/* Logo — never animates */}
+        {/* Logo — fixed, never animates */}
         <a
           href="#home"
           className="absolute left-6 top-1/2 -translate-y-1/2 text-xl font-extrabold tracking-tight lg:left-10"
@@ -31,14 +31,15 @@ export function Navbar() {
           AlibaBag<span style={{ color: "#6B21D6" }}>.</span>
         </a>
 
-        {/* Center nav pill — morphs on scroll */}
+        {/* Center nav — morphs from pill to floating box on scroll */}
         <ul
           className={[
-            "mx-auto hidden w-fit items-center gap-1 rounded-full px-2 py-1 transition-all duration-500 ease-out md:flex",
+            "mx-auto hidden w-fit items-center gap-1 px-2 py-1 transition-all duration-500 ease-out md:flex",
             isScrolled
-              ? "bg-white/70 shadow-lg backdrop-blur-md"
-              : "bg-white/40 backdrop-blur-sm",
+              ? "bg-white/80 shadow-[0_10px_30px_-12px_rgba(26,26,26,0.25)] backdrop-blur-md"
+              : "rounded-full bg-white/40 backdrop-blur-sm",
           ].join(" ")}
+          style={isScrolled ? { borderRadius: "14px" } : undefined}
         >
           {links.map((l) => (
             <li key={l.label}>
@@ -57,16 +58,8 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* CTA group — slides down on scroll */}
-        <div
-          key={isScrolled ? "scrolled" : "top"}
-          className="absolute right-6 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:right-10"
-          style={
-            isScrolled
-              ? { animation: "slideDownFade 1s ease-out both" }
-              : undefined
-          }
-        >
+        {/* CTA group — fixed, never animates */}
+        <div className="absolute right-6 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:right-10">
           <button
             aria-label="Call us"
             className="grid h-11 w-11 place-items-center rounded-full transition hover:opacity-90"
@@ -86,3 +79,4 @@ export function Navbar() {
     </nav>
   );
 }
+
