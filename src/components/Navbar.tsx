@@ -15,7 +15,8 @@ export function Navbar() {
       <header
         className={[
           "fixed inset-x-0 top-0 z-[100]",
-          "bg-white/0 backdrop-blur-xl backdrop-saturate-150 border-b border-white/35",
+          "bg-white/80 backdrop-blur-xl backdrop-saturate-150 border-b border-white/35",
+          "supports-[backdrop-filter]:bg-white/60",
         ].join(" ")}
       >
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
