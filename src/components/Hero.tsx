@@ -1,4 +1,6 @@
 import { Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeUp, scaleIn, slideRight, stagger } from "@/lib/animations";
 import heroBag from "@/assets/hero-bag.png";
 import heroPerson from "@/assets/hero-person.jpg";
 
@@ -35,6 +37,8 @@ function Pill({
   );
 }
 
+const pillsStagger = stagger(0.08, 0.25);
+
 export function Hero() {
   return (
     <section
@@ -45,7 +49,12 @@ export function Hero() {
       }}
     >
       {/* Giant background wordmark */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-10 z-0 flex justify-center overflow-hidden whitespace-nowrap">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.4 }}
+        className="pointer-events-none absolute inset-x-0 bottom-10 z-0 flex justify-center overflow-hidden whitespace-nowrap"
+      >
         <span
           className="select-none font-black uppercase"
           style={{
@@ -58,13 +67,18 @@ export function Hero() {
         >
           ALIBABAG
         </span>
-      </div>
+      </motion.div>
 
       <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-10 px-6 pb-24 pt-32 lg:grid-cols-12 lg:px-10 lg:pt-36">
         {/* LEFT — pills staggered */}
         <div className="flex flex-col justify-between lg:col-span-3">
-          <div className="flex flex-col gap-2 items-start">
-            <div className="flex items-center gap-2">
+          <motion.div
+            variants={pillsStagger}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col gap-2 items-start"
+          >
+            <motion.div variants={fadeUp} className="flex items-center gap-2">
               <span
                 className="grid h-9 w-9 place-items-center rounded-full"
                 style={{
@@ -75,19 +89,22 @@ export function Hero() {
                 <Sparkles className="h-4 w-4" style={{ color: "#6B21D6" }} />
               </span>
               <Pill>Handcrafted</Pill>
-            </div>
-            <div className="ml-4">
+            </motion.div>
+            <motion.div variants={fadeUp} className="ml-4">
               <Pill>Eco-Friendly</Pill>
-            </div>
-            <div className="ml-1">
+            </motion.div>
+            <motion.div variants={fadeUp} className="ml-1">
               <Pill active>Unik &amp; Langka</Pill>
-            </div>
-            <div className="ml-6">
+            </motion.div>
+            <motion.div variants={fadeUp} className="ml-6">
               <Pill>Lokal Pride 🇮🇩</Pill>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
             className="mt-10 uppercase leading-tight tracking-tight lg:mt-0"
             style={{
               fontSize: "clamp(24px, 3vw, 36px)",
@@ -98,11 +115,17 @@ export function Hero() {
             Anyaman Lokal,
             <br />
             Gaya Global
-          </h1>
+          </motion.h1>
         </div>
 
         {/* CENTER — floating bag */}
-        <div className="relative flex items-center justify-center lg:col-span-6">
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="relative flex items-center justify-center lg:col-span-6"
+        >
           <img
             src={heroBag}
             alt="AlibaBag handwoven tikar handbag in royal purple"
@@ -113,7 +136,10 @@ export function Hero() {
               filter: "drop-shadow(0 20px 60px rgba(107, 33, 214, 0.15))",
             }}
           />
-          <span
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="absolute right-4 top-1/3 z-20 rounded-full px-4 py-1.5 text-xs font-medium backdrop-blur-sm"
             style={{
               border: "1px solid rgba(255,255,255,0.6)",
@@ -123,8 +149,11 @@ export function Hero() {
             }}
           >
             Organic
-          </span>
-          <span
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.85, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="absolute bottom-24 left-2 z-20 rounded-full px-4 py-1.5 text-xs font-medium backdrop-blur-sm"
             style={{
               border: "1px solid rgba(255,255,255,0.6)",
@@ -134,11 +163,17 @@ export function Hero() {
             }}
           >
             No Chemicals
-          </span>
-        </div>
+          </motion.span>
+        </motion.div>
 
         {/* RIGHT */}
-        <div className="flex flex-col items-end justify-between gap-6 lg:col-span-3">
+        <motion.div
+          variants={slideRight}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+          className="flex flex-col items-end justify-between gap-6 lg:col-span-3"
+        >
           <div
             className="w-full max-w-[220px] overflow-hidden rounded-2xl p-2"
             style={{
@@ -185,7 +220,7 @@ export function Hero() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

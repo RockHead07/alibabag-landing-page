@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { fadeUp, fadeIn, stagger, vp } from "@/lib/animations";
 import processMaterial from "@/assets/process-material.jpg";
 import processWeaving from "@/assets/process-weaving.jpg";
 import processPacked from "@/assets/process-packed.jpg";
@@ -20,6 +22,8 @@ const steps = [
   },
 ];
 
+const cardStagger = stagger(0.15, 0.1);
+
 export function HowItsMade() {
   return (
     <section
@@ -32,8 +36,12 @@ export function HowItsMade() {
         className="relative mx-auto max-w-7xl pb-8"
         style={{ overflow: "visible" }}
       >
-        {/* Giant decorative text — full width, overflows naturally */}
-        <p
+        {/* Giant decorative text */}
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
           className="select-none font-black uppercase whitespace-nowrap pointer-events-none"
           style={{
             fontSize: "clamp(52px, 7.5vw, 110px)",
@@ -46,10 +54,14 @@ export function HowItsMade() {
           DARI TIKAR
           <br />
           KE TANGANMU
-        </p>
+        </motion.p>
 
         {/* Description — absolutely positioned on top, right side */}
-        <div
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
           className="absolute right-8 z-10 hidden md:block"
           style={{
             top: "50%",
@@ -75,10 +87,16 @@ export function HowItsMade() {
             teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
             sampai ke tanganmu dalam kondisi terbaik.
           </p>
-        </div>
+        </motion.div>
 
         {/* Mobile-only description (below giant text) */}
-        <div className="mt-6 md:hidden">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
+          className="mt-6 md:hidden"
+        >
           <h3
             className="uppercase tracking-wide font-extrabold"
             style={{
@@ -97,15 +115,23 @@ export function HowItsMade() {
             teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
             sampai ke tanganmu dalam kondisi terbaik.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       {/* PART B — 3 cards */}
       <div className="mx-auto max-w-7xl mt-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div
+          variants={cardStagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           {steps.map((s, i) => (
-            <article
+            <motion.article
               key={s.label}
+              variants={fadeUp}
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
               className="relative overflow-hidden howitsmade-card"
             >
               <img
@@ -148,9 +174,9 @@ export function HowItsMade() {
                   </span>
                 </div>
               )}
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

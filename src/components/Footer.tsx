@@ -1,4 +1,6 @@
 import { MapPin, Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeUp, stagger, vp } from "@/lib/animations";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -14,16 +16,23 @@ const contactItems = [
   { icon: Phone, text: "+62 812-3456-7890", href: undefined },
 ];
 
+const colStagger = stagger(0.15, 0);
+
 export function Footer() {
   return (
     <footer style={{ backgroundColor: "#111111", padding: "64px 64px 0" }}>
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
 
         {/* ── Top 3-column grid ── */}
-        <div className="footer-grid">
-
+        <motion.div
+          variants={colStagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
+          className="footer-grid"
+        >
           {/* LEFT — brand + WA CTA */}
-          <div>
+          <motion.div variants={fadeUp}>
             <p
               style={{
                 fontSize: 22,
@@ -61,18 +70,20 @@ export function Footer() {
               Hubungi kami langsung
             </p>
 
-            <a
+            <motion.a
               href="https://wa.me/6281234567890"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-wa-btn"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
             >
               💬 Chat via WhatsApp
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
           {/* CENTER — quick links */}
-          <div>
+          <motion.div variants={fadeUp}>
             <p
               style={{
                 fontSize: 12,
@@ -97,10 +108,10 @@ export function Footer() {
                 </a>
               ))}
             </nav>
-          </div>
+          </motion.div>
 
           {/* RIGHT — contact */}
-          <div>
+          <motion.div variants={fadeUp}>
             <p
               style={{
                 fontSize: 12,
@@ -137,21 +148,27 @@ export function Footer() {
                 )}
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* ── Divider ── */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", margin: "0" }} />
 
         {/* ── Bottom bar ── */}
-        <div className="footer-bottom">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
+          className="footer-bottom"
+        >
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
             © 2026 AlibaBag. All rights reserved.
           </p>
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>
             Made with love &amp; some tikar ❤️
           </p>
-        </div>
+        </motion.div>
       </div>
 
       {/* ── Scoped styles ── */}

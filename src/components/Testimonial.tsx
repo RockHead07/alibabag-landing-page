@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeUp, scaleIn, vp } from "@/lib/animations";
 
 const testimonials = [
   {
@@ -30,14 +32,11 @@ const testimonials = [
 
 export function Testimonial() {
   const [active, setActive] = useState(0);
-  const [fading, setFading] = useState(false);
+  const [direction, setDirection] = useState(1);
 
   function goTo(index: number) {
-    setFading(true);
-    setTimeout(() => {
-      setActive(index);
-      setFading(false);
-    }, 200);
+    setDirection(index > active ? 1 : -1);
+    setActive(index);
   }
 
   function prev() {
@@ -57,7 +56,11 @@ export function Testimonial() {
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
 
         {/* ── Heading ── */}
-        <h2
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
           className="testimonial-heading"
           style={{
             fontWeight: 900,
@@ -70,10 +73,14 @@ export function Testimonial() {
           }}
         >
           WHAT OUR CUSTOMERS SAY
-        </h2>
+        </motion.h2>
 
         {/* ── Main card ── */}
-        <div
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
           className="testimonial-card"
           style={{
             backgroundColor: "#C0C9EE",
@@ -90,19 +97,24 @@ export function Testimonial() {
           >
             {/* Left photo */}
             <div className="testimonial-photo testimonial-photo--left">
-              <img
-                src={slide.leftImage}
-                alt=""
-                aria-hidden="true"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  opacity: fading ? 0 : 1,
-                  transition: "opacity 0.2s ease",
-                }}
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`left-${active}`}
+                  src={slide.leftImage}
+                  alt=""
+                  aria-hidden="true"
+                  initial={{ opacity: 0, x: -20 * direction }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 * direction }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              </AnimatePresence>
             </div>
 
             {/* Middle — quote */}
@@ -134,74 +146,93 @@ export function Testimonial() {
               </span>
 
               {/* Quote text */}
-              <p
-                className="testimonial-quote"
-                style={{
-                  fontWeight: 600,
-                  color: "#1A1A1A",
-                  lineHeight: 1.6,
-                  maxWidth: 340,
-                  marginBottom: 16,
-                  opacity: fading ? 0 : 1,
-                  transition: "opacity 0.2s ease",
-                }}
-              >
-                {slide.quote}
-              </p>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`quote-${active}`}
+                  className="testimonial-quote"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  style={{
+                    fontWeight: 600,
+                    color: "#1A1A1A",
+                    lineHeight: 1.6,
+                    maxWidth: 340,
+                    marginBottom: 16,
+                  }}
+                >
+                  {slide.quote}
+                </motion.p>
+              </AnimatePresence>
 
               {/* Name + role */}
-              <p
-                style={{
-                  fontSize: 14,
-                  marginBottom: 20,
-                  opacity: fading ? 0 : 1,
-                  transition: "opacity 0.2s ease",
-                }}
-              >
-                <span style={{ fontWeight: 700, color: "#1A1A1A" }}>
-                  {slide.name}
-                </span>
-                <span style={{ color: "#A2AADB", margin: "0 8px" }}>|</span>
-                <span style={{ color: "#898AC4" }}>{slide.role}</span>
-              </p>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`name-${active}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  style={{
+                    fontSize: 14,
+                    marginBottom: 20,
+                  }}
+                >
+                  <span style={{ fontWeight: 700, color: "#1A1A1A" }}>
+                    {slide.name}
+                  </span>
+                  <span style={{ color: "#A2AADB", margin: "0 8px" }}>|</span>
+                  <span style={{ color: "#898AC4" }}>{slide.role}</span>
+                </motion.p>
+              </AnimatePresence>
 
               {/* Navigation arrows */}
               <div style={{ display: "flex", gap: 8 }}>
-                <button
+                <motion.button
                   onClick={prev}
                   aria-label="Previous testimonial"
                   className="testimonial-arrow"
+                  whileHover={{ scale: 1.1, backgroundColor: "#6B21D6" }}
+                  whileTap={{ scale: 0.92 }}
                 >
                   <ChevronLeft size={18} />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={next}
                   aria-label="Next testimonial"
                   className="testimonial-arrow"
+                  whileHover={{ scale: 1.1, backgroundColor: "#6B21D6" }}
+                  whileTap={{ scale: 0.92 }}
                 >
                   <ChevronRight size={18} />
-                </button>
+                </motion.button>
               </div>
             </div>
 
             {/* Right photo */}
             <div className="testimonial-photo testimonial-photo--right">
-              <img
-                src={slide.rightImage}
-                alt=""
-                aria-hidden="true"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  opacity: fading ? 0 : 1,
-                  transition: "opacity 0.2s ease",
-                }}
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`right-${active}`}
+                  src={slide.rightImage}
+                  alt=""
+                  aria-hidden="true"
+                  initial={{ opacity: 0, x: 20 * direction }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 * direction }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              </AnimatePresence>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* ── Dot indicators ── */}
         <div
@@ -213,11 +244,13 @@ export function Testimonial() {
           }}
         >
           {testimonials.map((_, i) => (
-            <button
+            <motion.button
               key={i}
               onClick={() => goTo(i)}
               aria-label={`Go to testimonial ${i + 1}`}
               className={`testimonial-dot ${i === active ? "testimonial-dot--active" : ""}`}
+              whileHover={{ scale: 1.3 }}
+              whileTap={{ scale: 0.9 }}
             />
           ))}
         </div>
@@ -262,7 +295,7 @@ export function Testimonial() {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: background 0.2s ease;
           padding: 0;
         }
 

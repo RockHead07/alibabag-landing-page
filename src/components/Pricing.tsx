@@ -1,4 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeUp, slideRight, stagger, vp } from "@/lib/animations";
 import heroBag from "../assets/hero-bag.png";
 
 const checklist = [
@@ -14,6 +16,9 @@ const statBoxes = [
   { stat: "100%", sub: "Handmade" },
 ];
 
+const leftStagger = stagger(0.1, 0);
+const checkStagger = stagger(0.08, 0.1);
+
 export function Pricing() {
   return (
     <section
@@ -23,10 +28,16 @@ export function Pricing() {
       <div className="pricing-grid">
 
         {/* ── LEFT COLUMN ── */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-
+        <motion.div
+          variants={leftStagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           {/* Label */}
-          <p
+          <motion.p
+            variants={fadeUp}
             style={{
               fontSize: 11,
               fontWeight: 700,
@@ -37,10 +48,11 @@ export function Pricing() {
             }}
           >
             HARGA
-          </p>
+          </motion.p>
 
           {/* Heading */}
-          <h2
+          <motion.h2
+            variants={fadeUp}
             className="pricing-heading"
             style={{
               fontWeight: 900,
@@ -51,10 +63,11 @@ export function Pricing() {
             }}
           >
             DARI TIKAR KE TANGANMU, DENGAN HARGA YANG RAMAH
-          </h2>
+          </motion.h2>
 
           {/* Description */}
-          <p
+          <motion.p
+            variants={fadeUp}
             style={{
               fontSize: 14,
               color: "#898AC4",
@@ -65,10 +78,11 @@ export function Pricing() {
           >
             Kami tidak hanya membuat tas — kami menghadirkan karya tangan lokal
             berkualitas yang bisa kamu miliki dengan harga yang sangat terjangkau.
-          </p>
+          </motion.p>
 
           {/* Checklist */}
-          <ul
+          <motion.ul
+            variants={checkStagger}
             style={{
               listStyle: "none",
               padding: 0,
@@ -79,20 +93,22 @@ export function Pricing() {
             }}
           >
             {checklist.map((item) => (
-              <li
+              <motion.li
                 key={item}
+                variants={fadeUp}
                 style={{ display: "flex", alignItems: "center", gap: 10 }}
               >
                 <CheckCircle2
                   style={{ color: "#6B21D6", width: 18, height: 18, flexShrink: 0 }}
                 />
                 <span style={{ fontSize: 14, color: "#1A1A1A" }}>{item}</span>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
 
           {/* Stats row */}
-          <div
+          <motion.div
+            variants={fadeUp}
             className="pricing-stats"
             style={{ marginBottom: 32 }}
           >
@@ -129,23 +145,29 @@ export function Pricing() {
                 </p>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* CTA */}
-          <div>
-            <a
+          <motion.div variants={fadeUp}>
+            <motion.a
               href="https://wa.me/6281234567890"
               target="_blank"
               rel="noopener noreferrer"
               className="pricing-cta"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
             >
               Pesan Sekarang
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
 
         {/* ── RIGHT COLUMN ── */}
-        <div
+        <motion.div
+          variants={slideRight}
+          initial="hidden"
+          whileInView="show"
+          viewport={vp}
           style={{
             position: "relative",
             display: "flex",
@@ -161,29 +183,41 @@ export function Pricing() {
           />
 
           {/* Badge 1 — top left */}
-          <span
+          <motion.span
+            initial={{ opacity: 0, scale: 0.7 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={vp}
+            transition={{ delay: 0.4, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="pricing-badge pricing-badge--1"
             style={{ top: "15%", left: "-10%" }}
           >
             Eco-Friendly
-          </span>
+          </motion.span>
 
           {/* Badge 2 — right middle */}
-          <span
+          <motion.span
+            initial={{ opacity: 0, scale: 0.7 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={vp}
+            transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="pricing-badge pricing-badge--2"
             style={{ top: "45%", right: "-5%" }}
           >
             Handmade ✋
-          </span>
+          </motion.span>
 
           {/* Badge 3 — bottom left */}
-          <span
+          <motion.span
+            initial={{ opacity: 0, scale: 0.7 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={vp}
+            transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="pricing-badge pricing-badge--3"
             style={{ bottom: "20%", left: "-8%" }}
           >
             🇮🇩 Local Pride
-          </span>
-        </div>
+          </motion.span>
+        </motion.div>
       </div>
 
       {/* ── Scoped styles ── */}

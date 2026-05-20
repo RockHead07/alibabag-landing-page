@@ -1,4 +1,6 @@
 import { Play, Hand, Leaf, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeUp, slideLeft, slideRight, scaleIn, stagger, vp } from "@/lib/animations";
 import storyBag from "@/assets/story-bag.jpg";
 import heroBag from "@/assets/hero-bag.png";
 
@@ -20,6 +22,8 @@ const features = [
   },
 ];
 
+const featureStagger = stagger(0.15, 0.1);
+
 export function OurStory() {
   return (
     <section
@@ -31,17 +35,25 @@ export function OurStory() {
         {/* ROW 1 — 3-column grid */}
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
           {/* COLUMN 1 — promo image with play button */}
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+          <motion.div
+            variants={slideLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl"
+          >
             <img
               src={storyBag}
               alt="AlibaBag woven handbag front view"
               loading="lazy"
               className="h-full w-full object-cover"
             />
-            <button
+            <motion.button
               type="button"
               aria-label="Play video"
-              className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition hover:scale-105"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition"
               style={{
                 backgroundColor: "white",
                 boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
@@ -51,11 +63,17 @@ export function OurStory() {
                 className="h-6 w-6"
                 style={{ color: "#6B21D6", fill: "#6B21D6" }}
               />
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* COLUMN 2 — floating side-angle image */}
-          <div className="flex justify-center">
+          <motion.div
+            variants={scaleIn}
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
+            className="flex justify-center"
+          >
             <img
               src={heroBag}
               alt="AlibaBag side angle"
@@ -65,10 +83,15 @@ export function OurStory() {
                 filter: "drop-shadow(0 16px 40px rgba(107,33,214,0.12))",
               }}
             />
-          </div>
+          </motion.div>
 
           {/* COLUMN 3 — text */}
-          <div>
+          <motion.div
+            variants={slideRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
+          >
             <p
               className="text-xs font-semibold uppercase"
               style={{
@@ -92,28 +115,46 @@ export function OurStory() {
               unik yang menggabungkan warisan lokal dengan gaya hidup modern.
               Setiap anyaman adalah karya tangan, setiap tas adalah cerita.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* ROW 2 — Why choose AlibaBag */}
         <div className="mt-16 text-center">
-          <h3
+          <motion.h3
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
             className="text-2xl font-extrabold uppercase tracking-tight md:text-3xl"
             style={{ color: "#1A1A1A" }}
           >
             Mengapa Memilih AlibaBag?
-          </h3>
-          <p
+          </motion.h3>
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
             className="mx-auto mt-3 max-w-xl text-sm"
             style={{ color: "#898AC4" }}
           >
             Setiap tas dibuat dengan hati, untuk kamu yang menghargai keunikan
             dan kualitas lokal.
-          </p>
+          </motion.p>
 
-          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3">
+          <motion.div
+            variants={featureStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={vp}
+            className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3"
+          >
             {features.map(({ Icon, label, sub }) => (
-              <div key={label} className="flex flex-col items-center px-4">
+              <motion.div
+                key={label}
+                variants={fadeUp}
+                className="flex flex-col items-center px-4"
+              >
                 <Icon
                   className="h-12 w-12"
                   strokeWidth={1.5}
@@ -131,9 +172,9 @@ export function OurStory() {
                 >
                   {sub}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
