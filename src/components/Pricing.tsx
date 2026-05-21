@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, slideRight, stagger, vp } from "@/lib/animations";
 import heroBag from "../assets/hero-bag.png";
@@ -148,7 +148,7 @@ export function Pricing() {
           </motion.div>
 
           {/* CTA */}
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
             <motion.a
               href="https://wa.me/6281234567890"
               target="_blank"
@@ -158,6 +158,18 @@ export function Pricing() {
               whileTap={{ scale: 0.97 }}
             >
               Pesan Sekarang
+            </motion.a>
+            <motion.a
+              href="https://instagram.com/alibabag"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="pricing-ig"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Instagram size={18} />
+              <span>Instagram</span>
             </motion.a>
           </motion.div>
         </motion.div>
@@ -275,6 +287,24 @@ export function Pricing() {
 
         .pricing-cta:hover {
           background: #6B21D6;
+        }
+
+        .pricing-ig {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          color: white;
+          font-weight: 700;
+          font-size: 14px;
+          padding: 12px 20px;
+          border-radius: 9999px;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+
+        .pricing-ig:hover {
+          filter: brightness(1.05);
         }
 
         /* ── Mobile (< 768px) ── */
