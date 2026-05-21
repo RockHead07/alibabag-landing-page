@@ -1,4 +1,4 @@
-import { MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, stagger, vp } from "@/lib/animations";
 
@@ -14,6 +14,7 @@ const contactItems = [
   { icon: MapPin, text: "Lamongan, Jawa Timur", href: undefined },
   { icon: Mail, text: "AlibaBag@gmail.com", href: "mailto:AlibaBag@gmail.com" },
   { icon: Phone, text: "+62 812-3456-7890", href: undefined },
+  { icon: Instagram, text: "@alibabag", href: "https://instagram.com/alibabag" },
 ];
 
 const colStagger = stagger(0.15, 0);

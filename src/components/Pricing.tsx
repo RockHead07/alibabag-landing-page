@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, slideRight, stagger, vp } from "@/lib/animations";
 import heroBag from "../assets/hero-bag.png";
@@ -148,7 +148,7 @@ export function Pricing() {
           </motion.div>
 
           {/* CTA */}
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
             <motion.a
               href="https://wa.me/6281234567890"
               target="_blank"
@@ -158,6 +158,18 @@ export function Pricing() {
               whileTap={{ scale: 0.97 }}
             >
               Pesan Sekarang
+            </motion.a>
+            <motion.a
+              href="https://instagram.com/alibabag"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="pricing-ig"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Instagram size={18} />
+              <span>Instagram</span>
             </motion.a>
           </motion.div>
         </motion.div>
@@ -175,48 +187,54 @@ export function Pricing() {
             justifyContent: "center",
           }}
         >
-          {/* Floating product image */}
-          <img
-            src={heroBag}
-            alt="AlibaBag product"
-            className="pricing-bag-img"
-          />
-
-          {/* Badge 1 — top left */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={vp}
-            transition={{ delay: 0.4, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="pricing-badge pricing-badge--1"
-            style={{ top: "15%", left: "-10%" }}
+          {/* Floating product image + badges share the same float motion */}
+          <motion.div
+            className="pricing-bag-wrap"
+            animate={{ y: [0, -14, 0], rotate: [-8, -6, -8] }}
+            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
           >
-            Eco-Friendly
-          </motion.span>
+            <img
+              src={heroBag}
+              alt="AlibaBag product"
+              className="pricing-bag-img"
+            />
 
-          {/* Badge 2 — right middle */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={vp}
-            transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="pricing-badge pricing-badge--2"
-            style={{ top: "45%", right: "-5%" }}
-          >
-            Handmade ✋
-          </motion.span>
+            {/* Badge 1 — top left */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={vp}
+              transition={{ delay: 0.4, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="pricing-badge pricing-badge--1"
+              style={{ top: "10%", left: "8%" }}
+            >
+              Eco-Friendly
+            </motion.span>
 
-          {/* Badge 3 — bottom left */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={vp}
-            transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="pricing-badge pricing-badge--3"
-            style={{ bottom: "20%", left: "-8%" }}
-          >
-            🇮🇩 Local Pride
-          </motion.span>
+            {/* Badge 2 — right middle */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={vp}
+              transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="pricing-badge pricing-badge--2"
+              style={{ top: "45%", right: "6%" }}
+            >
+              Handmade ✋
+            </motion.span>
+
+            {/* Badge 3 — bottom left */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={vp}
+              transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="pricing-badge pricing-badge--3"
+              style={{ bottom: "14%", left: "10%" }}
+            >
+              🇮🇩 Local Pride
+            </motion.span>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -240,19 +258,31 @@ export function Pricing() {
           gap: 12px;
         }
 
+        .pricing-bag-wrap {
+          position: relative;
+          width: 100%;
+          max-width: 420px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          will-change: transform;
+        }
+
         .pricing-bag-img {
           width: 100%;
           max-width: 420px;
-          transform: rotate(-8deg);
           filter: drop-shadow(0 24px 60px rgba(107,33,214,0.18));
           display: block;
         }
 
         .pricing-badge {
           position: absolute;
-          background: white;
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(16px) saturate(160%);
+          -webkit-backdrop-filter: blur(16px) saturate(160%);
+          border: 1.5px solid rgba(255, 255, 255, 0.7);
           border-radius: 9999px;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+          box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12), inset 0 1px 0 rgba(255,255,255,0.4);
           padding: 8px 16px;
           font-size: 12px;
           font-weight: 600;
@@ -275,6 +305,24 @@ export function Pricing() {
 
         .pricing-cta:hover {
           background: #6B21D6;
+        }
+
+        .pricing-ig {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          color: white;
+          font-weight: 700;
+          font-size: 14px;
+          padding: 12px 20px;
+          border-radius: 9999px;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+
+        .pricing-ig:hover {
+          filter: brightness(1.05);
         }
 
         /* ── Mobile (< 768px) ── */
