@@ -1,9 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Play, Hand, Leaf, Sparkles } from "lucide-react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { fadeUp, slideLeft, slideRight, stagger, vp } from "@/lib/animations";
 import storyBag from "@/assets/story-bag.jpg";
 import heroBag from "@/assets/hero-bag.png";
+import videoSrc from "@/assets/video/video.mp4";
 
 const features = [
   { Icon: Hand,     label: "100% Handmade",  sub: "Dibuat tangan, satu per satu" },
@@ -15,6 +16,13 @@ const featureStagger = stagger(0.15, 0.1);
 
 export function OurStory() {
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef   = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  function handlePlay() {
+    videoRef.current?.play();
+    setIsPlaying(true);
+  }
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -37,7 +45,7 @@ export function OurStory() {
       <div className="mx-auto max-w-7xl">
         {/* ROW 1 — 3-column grid */}
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
-          {/* COLUMN 1 — promo image */}
+          {/* COLUMN 1 — video */}
           <motion.div
             variants={slideLeft}
             initial="hidden"
@@ -45,22 +53,35 @@ export function OurStory() {
             viewport={vp}
             className="relative aspect-[4/3] overflow-hidden rounded-2xl"
           >
-            <img
-              src={storyBag}
-              alt="AlibaBag woven handbag front view"
-              loading="lazy"
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              poster={storyBag}
+              muted
+              playsInline
+              loop
               className="h-full w-full object-cover"
             />
-            <motion.button
-              type="button"
-              aria-label="Play video"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
-              style={{ backgroundColor: "white", boxShadow: "0 4px 16px rgba(0,0,0,0.12)" }}
-            >
-              <Play className="h-6 w-6" style={{ color: "#6B21D6", fill: "#6B21D6" }} />
-            </motion.button>
+            <AnimatePresence>
+              {!isPlaying && (
+                <motion.button
+                  key="play-btn"
+                  type="button"
+                  aria-label="Play video"
+                  onClick={handlePlay}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.93 }}
+                  className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
+                  style={{ backgroundColor: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.18)" }}
+                >
+                  <Play className="h-6 w-6 translate-x-0.5" style={{ color: "#6B21D6", fill: "#6B21D6" }} />
+                </motion.button>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* COLUMN 2 — floating bag with scroll parallax */}

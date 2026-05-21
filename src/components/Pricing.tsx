@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-import { CheckCircle2, Instagram } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, slideRight, stagger, vp } from "@/lib/animations";
 import heroBag from "../assets/hero-bag.png";
@@ -151,27 +150,29 @@ export function Pricing() {
           {/* CTA */}
           <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6288801437913"
               target="_blank"
               rel="noopener noreferrer"
               className="pushable"
             >
               <span className="p-shadow"></span>
-              <span className="p-edge p-edge--dark"></span>
-              <span className="p-front p-front--dark">Pesan Sekarang</span>
+              <span className="p-edge p-edge--purple"></span>
+              <span className="p-front p-front--purple">Pesan Sekarang</span>
             </a>
             <a
-              href="https://instagram.com/alibabag"
+              href="https://www.tiktok.com/@official_alibabag?_r=1&_t=ZS-96XxuipcH3N"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"
+              aria-label="TikTok"
               className="pushable"
             >
               <span className="p-shadow"></span>
-              <span className="p-edge p-edge--ig"></span>
-              <span className="p-front p-front--ig">
-                <Instagram size={18} />
-                <span>Instagram</span>
+              <span className="p-edge p-edge--tt"></span>
+              <span className="p-front p-front--tt">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.52V6.78a4.85 4.85 0 0 1-1.02-.09z"/>
+                </svg>
+                <span>TikTok</span>
               </span>
             </a>
           </motion.div>
@@ -329,23 +330,23 @@ export function Pricing() {
           border-radius: 999px;
         }
 
-        .p-edge--dark {
+        .p-edge--purple {
           background: linear-gradient(
             to left,
-            hsl(0deg 0% 4%) 0%,
-            hsl(0deg 0% 11%) 8%,
-            hsl(0deg 0% 11%) 92%,
-            hsl(0deg 0% 4%) 100%
+            hsl(271deg 80% 18%) 0%,
+            hsl(271deg 80% 28%) 8%,
+            hsl(271deg 80% 28%) 92%,
+            hsl(271deg 80% 18%) 100%
           );
         }
 
-        .p-edge--ig {
+        .p-edge--tt {
           background: linear-gradient(
             to left,
-            #6b0b31 0%,
-            #991830 8%,
-            #991830 92%,
-            #6b0b31 100%
+            #0a0a0a 0%,
+            #161616 8%,
+            #161616 92%,
+            #0a0a0a 100%
           );
         }
 
@@ -365,13 +366,29 @@ export function Pricing() {
           transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
         }
 
-        .p-front--dark {
-          background: #1A1A1A;
+        .p-front--purple {
+          background: #6B21D6;
         }
 
-        .p-front--ig {
-          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-          padding: 12px 20px;
+        .p-front--tt {
+          background: #010101;
+          padding: 12px 24px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .p-front--tt::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #69C9D0 0%, #010101 45%, #EE1D52 100%);
+          opacity: 0.85;
+          border-radius: 999px;
+        }
+
+        .p-front--tt > * {
+          position: relative;
+          z-index: 1;
         }
 
         .pushable:hover {
