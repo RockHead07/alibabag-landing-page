@@ -262,9 +262,12 @@ export function Pricing() {
 
         .pricing-badge {
           position: absolute;
-          background: white;
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(16px) saturate(160%);
+          -webkit-backdrop-filter: blur(16px) saturate(160%);
+          border: 1.5px solid rgba(255, 255, 255, 0.7);
           border-radius: 9999px;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+          box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12), inset 0 1px 0 rgba(255,255,255,0.4);
           padding: 8px 16px;
           font-size: 12px;
           font-weight: 600;
