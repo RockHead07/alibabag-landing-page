@@ -20,7 +20,7 @@ const colStagger = stagger(0.15, 0);
 
 export function Footer() {
   return (
-    <footer style={{ backgroundColor: "#111111", padding: "64px 64px 0" }}>
+    <footer id="kontak" style={{ backgroundColor: "#111111", padding: "64px 64px 0" }}>
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
 
         {/* ── Top 3-column grid ── */}

@@ -3,24 +3,24 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { label: "Home", href: "#home", active: true },
-  { label: "About", href: "#about" },
-  { label: "Proses", href: "#proses" },
-  { label: "Harga", href: "#harga" },
-  { label: "Kontak", href: "#kontak" },
+  { label: "Home",   href: "#home",   id: "home"   },
+  { label: "About",  href: "#about",  id: "about"  },
+  { label: "Proses", href: "#proses", id: "proses" },
+  { label: "Harga",  href: "#harga",  id: "harga"  },
+  { label: "Kontak", href: "#kontak", id: "kontak" },
 ];
 
 export function Navbar() {
-  const [visible, setVisible] = useState(true);
-  const [atTop, setAtTop] = useState(true);
-  const lastY = useRef(0);
+  const [visible, setVisible]         = useState(true);
+  const [atTop, setAtTop]             = useState(true);
+  const [activeId, setActiveId]       = useState("home");
+  const lastY                         = useRef(0);
 
+  // Show / hide on scroll direction
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-
       setAtTop(y < 10);
-
       if (y < 10) {
         setVisible(true);
       } else if (y > lastY.current + 2) {
@@ -28,12 +28,34 @@ export function Navbar() {
       } else if (y < lastY.current - 2) {
         setVisible(true);
       }
-
       lastY.current = y;
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Active section tracking via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = links.map((l) => l.id);
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveId(id);
+        },
+        // Trigger when top of section crosses the upper-middle of the viewport
+        { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
@@ -59,21 +81,28 @@ export function Navbar() {
         </a>
 
         <ul className="mx-auto hidden w-fit items-center gap-6 md:flex">
-          {links.map((l) => (
-            <li key={l.label}>
-              <a
-                href={l.href}
-                className="text-sm font-medium transition-colors"
-                style={
-                  l.active
-                    ? { color: "#6B21D6" }
-                    : { color: "rgba(26,26,26,0.8)" }
-                }
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {links.map((l) => {
+            const isActive = activeId === l.id;
+            return (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  className="relative text-sm font-medium transition-colors duration-200"
+                  style={{ color: isActive ? "#6B21D6" : "rgba(26,26,26,0.8)" }}
+                >
+                  {l.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
+                      style={{ backgroundColor: "#6B21D6" }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="absolute right-6 top-1/2 flex -translate-y-1/2 items-center gap-2 lg:right-10">
