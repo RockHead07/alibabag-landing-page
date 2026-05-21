@@ -96,22 +96,30 @@ export function Testimonial() {
             style={{ height: "100%" }}
           >
             {/* Left photo */}
-            <div className="testimonial-photo testimonial-photo--left">
-              <AnimatePresence mode="wait">
+            <div
+              className="testimonial-photo testimonial-photo--left"
+              style={{ position: "relative", overflow: "hidden" }}
+            >
+              <AnimatePresence initial={false}>
                 <motion.img
                   key={`left-${active}`}
                   src={slide.leftImage}
                   alt=""
                   aria-hidden="true"
-                  initial={{ opacity: 0, x: -20 * direction }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 * direction }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  initial={{ opacity: 0, scale: 1.12 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.06 }}
+                  transition={{
+                    duration: 0.65,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: direction > 0 ? 0 : 0.06,
+                  }}
                   style={{
+                    position: "absolute",
+                    inset: 0,
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    display: "block",
                   }}
                 />
               </AnimatePresence>
@@ -211,22 +219,30 @@ export function Testimonial() {
             </div>
 
             {/* Right photo */}
-            <div className="testimonial-photo testimonial-photo--right">
-              <AnimatePresence mode="wait">
+            <div
+              className="testimonial-photo testimonial-photo--right"
+              style={{ position: "relative", overflow: "hidden" }}
+            >
+              <AnimatePresence initial={false}>
                 <motion.img
                   key={`right-${active}`}
                   src={slide.rightImage}
                   alt=""
                   aria-hidden="true"
-                  initial={{ opacity: 0, x: 20 * direction }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 * direction }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  initial={{ opacity: 0, scale: 1.12 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.06 }}
+                  transition={{
+                    duration: 0.65,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: direction > 0 ? 0.06 : 0,
+                  }}
                   style={{
+                    position: "absolute",
+                    inset: 0,
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    display: "block",
                   }}
                 />
               </AnimatePresence>

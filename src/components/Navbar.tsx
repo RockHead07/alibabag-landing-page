@@ -3,18 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-<<<<<<< HEAD
   { label: "Home",   href: "#home",   id: "home"   },
   { label: "About",  href: "#about",  id: "about"  },
   { label: "Proses", href: "#proses", id: "proses" },
   { label: "Harga",  href: "#harga",  id: "harga"  },
-  { label: "Kontak", href: "#kontak", id: "kontak" },
-=======
-  { label: "Home", href: "#home", active: true },
-  { label: "About", href: "#about" },
-  { label: "Proses", href: "#proses" },
-  { label: "Harga", href: "#harga" },
->>>>>>> f6e997230046d37f4cbbe287a19fe31c60cff091
 ];
 
 export function Navbar() {

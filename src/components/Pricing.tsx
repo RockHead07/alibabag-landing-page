@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { CheckCircle2, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, slideRight, stagger, vp } from "@/lib/animations";
@@ -149,28 +150,30 @@ export function Pricing() {
 
           {/* CTA */}
           <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-            <motion.a
+            <a
               href="https://wa.me/6281234567890"
               target="_blank"
               rel="noopener noreferrer"
-              className="pricing-cta"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
+              className="pushable"
             >
-              Pesan Sekarang
-            </motion.a>
-            <motion.a
+              <span className="p-shadow"></span>
+              <span className="p-edge p-edge--dark"></span>
+              <span className="p-front p-front--dark">Pesan Sekarang</span>
+            </a>
+            <a
               href="https://instagram.com/alibabag"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="pricing-ig"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
+              className="pushable"
             >
-              <Instagram size={18} />
-              <span>Instagram</span>
-            </motion.a>
+              <span className="p-shadow"></span>
+              <span className="p-edge p-edge--ig"></span>
+              <span className="p-front p-front--ig">
+                <Instagram size={18} />
+                <span>Instagram</span>
+              </span>
+            </a>
           </motion.div>
         </motion.div>
 
@@ -291,38 +294,112 @@ export function Pricing() {
           pointer-events: none;
         }
 
-        .pricing-cta {
+        /* ── 3D Pushable buttons ── */
+        .pushable {
+          position: relative;
+          border: none;
+          background: transparent;
+          padding: 0;
+          cursor: pointer;
+          outline-offset: 4px;
+          transition: filter 250ms;
+          text-decoration: none;
           display: inline-block;
-          background: #1A1A1A;
-          color: white;
-          font-weight: 700;
-          font-size: 14px;
-          padding: 12px 32px;
-          border-radius: 9999px;
-          text-decoration: none;
-          transition: all 0.2s ease;
         }
 
-        .pricing-cta:hover {
-          background: #6B21D6;
+        .p-shadow {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 999px;
+          background: hsl(0deg 0% 0% / 0.25);
+          will-change: transform;
+          transform: translateY(2px);
+          transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
         }
 
-        .pricing-ig {
-          display: inline-flex;
+        .p-edge {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 999px;
+        }
+
+        .p-edge--dark {
+          background: linear-gradient(
+            to left,
+            hsl(0deg 0% 4%) 0%,
+            hsl(0deg 0% 11%) 8%,
+            hsl(0deg 0% 11%) 92%,
+            hsl(0deg 0% 4%) 100%
+          );
+        }
+
+        .p-edge--ig {
+          background: linear-gradient(
+            to left,
+            #6b0b31 0%,
+            #991830 8%,
+            #991830 92%,
+            #6b0b31 100%
+          );
+        }
+
+        .p-front {
+          display: flex;
           align-items: center;
+          justify-content: center;
           gap: 8px;
-          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-          color: white;
-          font-weight: 700;
+          position: relative;
+          padding: 12px 32px;
+          border-radius: 999px;
           font-size: 14px;
-          padding: 12px 20px;
-          border-radius: 9999px;
-          text-decoration: none;
-          transition: all 0.2s ease;
+          font-weight: 700;
+          color: white;
+          will-change: transform;
+          transform: translateY(-4px);
+          transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
         }
 
-        .pricing-ig:hover {
-          filter: brightness(1.05);
+        .p-front--dark {
+          background: #1A1A1A;
+        }
+
+        .p-front--ig {
+          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          padding: 12px 20px;
+        }
+
+        .pushable:hover {
+          filter: brightness(110%);
+        }
+
+        .pushable:hover .p-front {
+          transform: translateY(-6px);
+          transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .pushable:active .p-front {
+          transform: translateY(-2px);
+          transition: transform 34ms;
+        }
+
+        .pushable:hover .p-shadow {
+          transform: translateY(4px);
+          transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .pushable:active .p-shadow {
+          transform: translateY(1px);
+          transition: transform 34ms;
+        }
+
+        .pushable:focus:not(:focus-visible) {
+          outline: none;
         }
 
         /* ── Mobile (< 768px) ── */

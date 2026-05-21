@@ -158,36 +158,43 @@ export function Hero() {
                 filter: "drop-shadow(0 20px 60px rgba(107, 33, 214, 0.15))",
               }}
             />
-          </motion.div>
 
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-4 top-1/3 z-20 rounded-full px-4 py-1.5 text-xs font-medium backdrop-blur-sm"
-            style={{
-              border: "1px solid rgba(255,255,255,0.6)",
-              backgroundColor: "rgba(255,255,255,0.7)",
-              color: "#1A1A1A",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-            }}
-          >
-            Organic
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.85, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-24 left-2 z-20 rounded-full px-4 py-1.5 text-xs font-medium backdrop-blur-sm"
-            style={{
-              border: "1px solid rgba(255,255,255,0.6)",
-              backgroundColor: "rgba(255,255,255,0.7)",
-              color: "#1A1A1A",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-            }}
-          >
-            No Chemicals
-          </motion.span>
+            {/* Organic badge — hugs top-right edge of bag */}
+            <motion.span
+              initial={{ opacity: 0, x: 10, scale: 0.85 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ delay: 0.75, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute right-[-2%] top-[30%] z-20 translate-x-1/4 rounded-full px-4 py-1.5 text-xs font-medium"
+              style={{
+                backdropFilter: "blur(20px) saturate(200%)",
+                WebkitBackdropFilter: "blur(20px) saturate(200%)",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(107, 33, 214, 0.4)",
+                color: "#1A1A1A",
+                boxShadow: "0 4px 20px rgba(107, 33, 214, 0.12), inset 0 1px 0 rgba(255,255,255,0.25)",
+              }}
+            >
+              Organic
+            </motion.span>
+
+            {/* No Chemicals badge — hugs bottom-left edge of bag */}
+            <motion.span
+              initial={{ opacity: 0, x: -10, scale: 0.85 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ delay: 0.92, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute bottom-[20%] left-[-2%] z-20 -translate-x-1/4 rounded-full px-4 py-1.5 text-xs font-medium"
+              style={{
+                backdropFilter: "blur(20px) saturate(200%)",
+                WebkitBackdropFilter: "blur(20px) saturate(200%)",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(107, 33, 214, 0.4)",
+                color: "#1A1A1A",
+                boxShadow: "0 4px 20px rgba(107, 33, 214, 0.12), inset 0 1px 0 rgba(255,255,255,0.25)",
+              }}
+            >
+              No Chemicals
+            </motion.span>
+          </motion.div>
         </div>
 
         {/* RIGHT — card with parallax */}
