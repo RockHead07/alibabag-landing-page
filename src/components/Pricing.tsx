@@ -258,10 +258,19 @@ export function Pricing() {
           gap: 12px;
         }
 
+        .pricing-bag-wrap {
+          position: relative;
+          width: 100%;
+          max-width: 420px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          will-change: transform;
+        }
+
         .pricing-bag-img {
           width: 100%;
           max-width: 420px;
-          transform: rotate(-8deg);
           filter: drop-shadow(0 24px 60px rgba(107,33,214,0.18));
           display: block;
         }
