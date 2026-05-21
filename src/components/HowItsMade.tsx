@@ -106,11 +106,7 @@ export function HowItsMade() {
           {steps.map((s, i) => (
             <article
               key={s.label}
-              className="relative overflow-hidden rounded-2xl"
-              style={{
-                backgroundColor: "#FAFAFA",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-              }}
+              className="relative overflow-hidden howitsmade-card"
             >
               <img
                 src={s.img}

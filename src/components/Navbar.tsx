@@ -1,4 +1,5 @@
 import { Phone } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const links = [
   { label: "Home", href: "#home", active: true },
@@ -9,14 +10,30 @@ const links = [
 ];
 
 export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
-      {/* Section 1 header — Logo + CTA scroll away with hero, never re-appear */}
       <header
         className={[
-          "fixed inset-x-0 top-0 z-[100]",
-          "bg-white/0 backdrop-blur-xl backdrop-saturate-150 border-b border-white/35",
+          "fixed inset-x-0 top-0 z-[100] transition-all duration-500",
+          scrolled
+            ? "border-b border-white/30 shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
+            : "border-b border-white/20",
         ].join(" ")}
+        style={{
+          background: scrolled
+            ? "rgba(250,250,250,0.78)"
+            : "rgba(255,255,255,0.35)",
+          backdropFilter: "blur(24px) saturate(180%)",
+          WebkitBackdropFilter: "blur(24px) saturate(180%)",
+        }}
       >
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <a

@@ -1,3 +1,12 @@
+/* Card style for HowItsMade section, mirip gambar pertama */
+.howitsmade-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: #FAFAFA;
+  border: 2px solid #fff;
+  padding: 0;
+  overflow: hidden;
+}
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";

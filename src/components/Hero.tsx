@@ -1,5 +1,4 @@
 import { Sparkles } from "lucide-react";
-import { Navbar } from "./Navbar";
 import heroBag from "@/assets/hero-bag.png";
 import heroPerson from "@/assets/hero-person.jpg";
 
@@ -45,8 +44,6 @@ export function Hero() {
         background: "linear-gradient(to bottom, #FAFAFA 0%, #E6E9F7 55%, #C0C9EE 100%)",
       }}
     >
-      <Navbar />
-
       {/* Giant background wordmark */}
       <div className="pointer-events-none absolute inset-x-0 bottom-10 z-0 flex justify-center overflow-hidden whitespace-nowrap">
         <span
