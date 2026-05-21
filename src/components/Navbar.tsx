@@ -22,10 +22,16 @@ export function Navbar() {
     <>
       <header
         className={[
+<<<<<<< HEAD
           "fixed inset-x-0 top-0 z-[100] transition-all duration-500",
           scrolled
             ? "border-b border-white/30 shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
             : "border-b border-white/20",
+=======
+          "fixed inset-x-0 top-0 z-[100]",
+          "bg-white/80 backdrop-blur-xl backdrop-saturate-150 border-b border-white/35",
+          "supports-[backdrop-filter]:bg-white/60",
+>>>>>>> 167fc9bc1849155981f3ec059f9e74301b7cf98c
         ].join(" ")}
         style={{
           background: scrolled
