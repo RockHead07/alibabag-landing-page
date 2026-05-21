@@ -23,9 +23,9 @@ export function Navbar() {
 
       if (y < 10) {
         setVisible(true);
-      } else if (y > lastY.current + 10) {
+      } else if (y > lastY.current + 2) {
         setVisible(false);
-      } else if (y < lastY.current - 10) {
+      } else if (y < lastY.current - 2) {
         setVisible(true);
       }
 

@@ -1,32 +1,35 @@
+import { useRef } from "react";
 import { Play, Hand, Leaf, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
-import { fadeUp, slideLeft, slideRight, scaleIn, stagger, vp } from "@/lib/animations";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { fadeUp, slideLeft, slideRight, stagger, vp } from "@/lib/animations";
 import storyBag from "@/assets/story-bag.jpg";
 import heroBag from "@/assets/hero-bag.png";
 
 const features = [
-  {
-    Icon: Hand,
-    label: "100% Handmade",
-    sub: "Dibuat tangan, satu per satu",
-  },
-  {
-    Icon: Leaf,
-    label: "Eco-Friendly",
-    sub: "Material tikar alami & ramah lingkungan",
-  },
-  {
-    Icon: Sparkles,
-    label: "Unik & Langka",
-    sub: "Jarang ada di pasaran, tiap tas beda",
-  },
+  { Icon: Hand,     label: "100% Handmade",  sub: "Dibuat tangan, satu per satu" },
+  { Icon: Leaf,     label: "Eco-Friendly",   sub: "Material tikar alami & ramah lingkungan" },
+  { Icon: Sparkles, label: "Unik & Langka",  sub: "Jarang ada di pasaran, tiap tas beda" },
 ];
 
 const featureStagger = stagger(0.15, 0.1);
 
 export function OurStory() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Center bag floats up slightly while scrolling through section
+  const rawBagY  = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const rawBagRot = useTransform(scrollYProgress, [0, 1], [-3, 3]);
+  const bagY   = useSpring(rawBagY,   { stiffness: 60, damping: 18, mass: 0.6 });
+  const bagRot = useSpring(rawBagRot, { stiffness: 60, damping: 18, mass: 0.6 });
+
   return (
     <section
+      ref={sectionRef}
       id="about"
       className="py-20 px-8 lg:px-12"
       style={{ backgroundColor: "#FAFAFA" }}
@@ -34,7 +37,7 @@ export function OurStory() {
       <div className="mx-auto max-w-7xl">
         {/* ROW 1 — 3-column grid */}
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
-          {/* COLUMN 1 — promo image with play button */}
+          {/* COLUMN 1 — promo image */}
           <motion.div
             variants={slideLeft}
             initial="hidden"
@@ -53,37 +56,27 @@ export function OurStory() {
               aria-label="Play video"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition"
-              style={{
-                backgroundColor: "white",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
-              }}
+              className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
+              style={{ backgroundColor: "white", boxShadow: "0 4px 16px rgba(0,0,0,0.12)" }}
             >
-              <Play
-                className="h-6 w-6"
-                style={{ color: "#6B21D6", fill: "#6B21D6" }}
-              />
+              <Play className="h-6 w-6" style={{ color: "#6B21D6", fill: "#6B21D6" }} />
             </motion.button>
           </motion.div>
 
-          {/* COLUMN 2 — floating side-angle image */}
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="show"
-            viewport={vp}
-            className="flex justify-center"
-          >
-            <img
+          {/* COLUMN 2 — floating bag with scroll parallax */}
+          <div className="flex justify-center">
+            <motion.img
               src={heroBag}
               alt="AlibaBag side angle"
               loading="lazy"
               className="h-auto w-3/4 object-contain"
               style={{
                 filter: "drop-shadow(0 16px 40px rgba(107,33,214,0.12))",
+                y: bagY,
+                rotate: bagRot,
               }}
             />
-          </motion.div>
+          </div>
 
           {/* COLUMN 3 — text */}
           <motion.div
@@ -94,10 +87,7 @@ export function OurStory() {
           >
             <p
               className="text-xs font-semibold uppercase"
-              style={{
-                letterSpacing: "0.25em",
-                color: "#898AC4",
-              }}
+              style={{ letterSpacing: "0.25em", color: "#898AC4" }}
             >
               Tentang Kami
             </p>
@@ -107,10 +97,7 @@ export function OurStory() {
             >
               Crafted with Pride
             </h2>
-            <p
-              className="mt-6 text-sm leading-relaxed"
-              style={{ color: "#1A1A1A" }}
-            >
+            <p className="mt-6 text-sm leading-relaxed" style={{ color: "#1A1A1A" }}>
               Dari helai tikar yang sederhana, lahirlah AlibaBag — tas tangan
               unik yang menggabungkan warisan lokal dengan gaya hidup modern.
               Setiap anyaman adalah karya tangan, setiap tas adalah cerita.
@@ -150,26 +137,12 @@ export function OurStory() {
             className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3"
           >
             {features.map(({ Icon, label, sub }) => (
-              <motion.div
-                key={label}
-                variants={fadeUp}
-                className="flex flex-col items-center px-4"
-              >
-                <Icon
-                  className="h-12 w-12"
-                  strokeWidth={1.5}
-                  style={{ color: "#A2AADB" }}
-                />
-                <p
-                  className="mt-5 text-sm font-bold uppercase tracking-wide"
-                  style={{ color: "#1A1A1A" }}
-                >
+              <motion.div key={label} variants={fadeUp} className="flex flex-col items-center px-4">
+                <Icon className="h-12 w-12" strokeWidth={1.5} style={{ color: "#A2AADB" }} />
+                <p className="mt-5 text-sm font-bold uppercase tracking-wide" style={{ color: "#1A1A1A" }}>
                   {label}
                 </p>
-                <p
-                  className="mt-2 max-w-[14rem] text-xs"
-                  style={{ color: "#898AC4" }}
-                >
+                <p className="mt-2 max-w-[14rem] text-xs" style={{ color: "#898AC4" }}>
                   {sub}
                 </p>
               </motion.div>

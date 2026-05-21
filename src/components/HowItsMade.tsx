@@ -36,24 +36,25 @@ export function HowItsMade() {
         className="relative mx-auto max-w-7xl pb-8"
         style={{ overflow: "visible" }}
       >
-        {/* Giant decorative text */}
+        {/* Giant decorative text — slide up on first appear only */}
         <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={vp}
           className="select-none font-black uppercase whitespace-nowrap pointer-events-none"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={vp}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontSize: "clamp(52px, 7.5vw, 110px)",
             lineHeight: 0.88,
             letterSpacing: "-3px",
             color: "#FAFAFA",
-            opacity: 0.52,
           }}
         >
           DARI TIKAR
           <br />
-          KE TANGANMU
+          KE
+          <br />
+          TANGANMU
         </motion.p>
 
         {/* Description — absolutely positioned on top, right side */}
@@ -71,25 +72,18 @@ export function HowItsMade() {
         >
           <h3
             className="uppercase tracking-wide font-extrabold"
-            style={{
-              fontSize: 15,
-              color: "#1A1A1A",
-              marginBottom: 12,
-            }}
+            style={{ fontSize: 15, color: "#1A1A1A", marginBottom: 12 }}
           >
             KERAJINAN DI SETIAP LANGKAH
           </h3>
-          <p
-            className="leading-relaxed"
-            style={{ fontSize: 13, color: "#1A1A1A" }}
-          >
+          <p className="leading-relaxed" style={{ fontSize: 13, color: "#1A1A1A" }}>
             Dari pemilihan tikar berkualitas hingga proses anyaman yang
             teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
             sampai ke tanganmu dalam kondisi terbaik.
           </p>
         </motion.div>
 
-        {/* Mobile-only description (below giant text) */}
+        {/* Mobile-only description */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -99,18 +93,11 @@ export function HowItsMade() {
         >
           <h3
             className="uppercase tracking-wide font-extrabold"
-            style={{
-              fontSize: 15,
-              color: "#1A1A1A",
-              marginBottom: 12,
-            }}
+            style={{ fontSize: 15, color: "#1A1A1A", marginBottom: 12 }}
           >
             KERAJINAN DI SETIAP LANGKAH
           </h3>
-          <p
-            className="leading-relaxed"
-            style={{ fontSize: 13, color: "#1A1A1A" }}
-          >
+          <p className="leading-relaxed" style={{ fontSize: 13, color: "#1A1A1A" }}>
             Dari pemilihan tikar berkualitas hingga proses anyaman yang
             teliti, setiap AlibaBag dibuat dengan penuh perhatian agar
             sampai ke tanganmu dalam kondisi terbaik.
@@ -156,7 +143,6 @@ export function HowItsMade() {
                 </p>
               </div>
 
-              {/* Badge on last card */}
               {i === steps.length - 1 && (
                 <div
                   className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full px-3 py-1"
@@ -166,10 +152,7 @@ export function HowItsMade() {
                   }}
                 >
                   <span className="text-xs">🇮🇩</span>
-                  <span
-                    className="text-xs font-semibold"
-                    style={{ color: "#1A1A1A" }}
-                  >
+                  <span className="text-xs font-semibold" style={{ color: "#1A1A1A" }}>
                     Local Craft
                   </span>
                 </div>

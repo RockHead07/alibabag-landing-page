@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import { Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { fadeUp, scaleIn, slideRight, stagger } from "@/lib/animations";
 import heroBag from "@/assets/hero-bag.png";
 import heroPerson from "@/assets/hero-person.jpg";
@@ -40,19 +41,36 @@ function Pill({
 const pillsStagger = stagger(0.08, 0.25);
 
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const rawBagY   = useTransform(scrollYProgress, [0, 1], [0, -110]);
+  const rawWordY  = useTransform(scrollYProgress, [0, 1], [0, -55]);
+  const rawRightY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+
+  const bagY   = useSpring(rawBagY,   { stiffness: 80, damping: 20, mass: 0.5 });
+  const wordY  = useSpring(rawWordY,  { stiffness: 80, damping: 20, mass: 0.5 });
+  const rightY = useSpring(rawRightY, { stiffness: 80, damping: 20, mass: 0.5 });
+
   return (
     <section
+      ref={heroRef}
       id="home"
       className="relative isolate min-h-screen overflow-hidden"
       style={{
         background: "linear-gradient(to bottom, #FAFAFA 0%, #E6E9F7 55%, #C0C9EE 100%)",
       }}
     >
-      {/* Giant background wordmark */}
+      {/* Giant background wordmark — parallax slower */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.4 }}
+        style={{ y: wordY }}
         className="pointer-events-none absolute inset-x-0 bottom-10 z-0 flex justify-center overflow-hidden whitespace-nowrap"
       >
         <span
@@ -69,7 +87,9 @@ export function Hero() {
         </span>
       </motion.div>
 
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-10 px-6 pb-24 pt-32 lg:grid-cols-12 lg:px-10 lg:pt-36">
+      <div
+        className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-10 px-6 pb-24 pt-32 lg:grid-cols-12 lg:px-10 lg:pt-36"
+      >
         {/* LEFT — pills staggered */}
         <div className="flex flex-col justify-between lg:col-span-3">
           <motion.div
@@ -118,24 +138,28 @@ export function Hero() {
           </motion.h1>
         </div>
 
-        {/* CENTER — floating bag */}
-        <motion.div
-          variants={scaleIn}
-          initial="hidden"
-          animate="show"
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="relative flex items-center justify-center lg:col-span-6"
-        >
-          <img
-            src={heroBag}
-            alt="AlibaBag handwoven tikar handbag in royal purple"
-            width={1024}
-            height={1024}
-            className="relative z-10 w-[78%] max-w-[520px] object-contain"
-            style={{
-              filter: "drop-shadow(0 20px 60px rgba(107, 33, 214, 0.15))",
-            }}
-          />
+        {/* CENTER — floating bag with parallax */}
+        <div className="relative flex items-center justify-center lg:col-span-6">
+          <motion.div
+            variants={scaleIn}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            style={{ y: bagY }}
+            className="relative z-10 w-[78%] max-w-[520px]"
+          >
+            <img
+              src={heroBag}
+              alt="AlibaBag handwoven tikar handbag in royal purple"
+              width={1024}
+              height={1024}
+              className="w-full object-contain"
+              style={{
+                filter: "drop-shadow(0 20px 60px rgba(107, 33, 214, 0.15))",
+              }}
+            />
+          </motion.div>
+
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -164,14 +188,15 @@ export function Hero() {
           >
             No Chemicals
           </motion.span>
-        </motion.div>
+        </div>
 
-        {/* RIGHT */}
+        {/* RIGHT — card with parallax */}
         <motion.div
           variants={slideRight}
           initial="hidden"
           animate="show"
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+          style={{ y: rightY }}
           className="flex flex-col items-end justify-between gap-6 lg:col-span-3"
         >
           <div
