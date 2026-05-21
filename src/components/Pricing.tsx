@@ -187,48 +187,54 @@ export function Pricing() {
             justifyContent: "center",
           }}
         >
-          {/* Floating product image */}
-          <img
-            src={heroBag}
-            alt="AlibaBag product"
-            className="pricing-bag-img"
-          />
-
-          {/* Badge 1 — top left */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={vp}
-            transition={{ delay: 0.4, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="pricing-badge pricing-badge--1"
-            style={{ top: "15%", left: "-10%" }}
+          {/* Floating product image + badges share the same float motion */}
+          <motion.div
+            className="pricing-bag-wrap"
+            animate={{ y: [0, -14, 0], rotate: [-8, -6, -8] }}
+            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
           >
-            Eco-Friendly
-          </motion.span>
+            <img
+              src={heroBag}
+              alt="AlibaBag product"
+              className="pricing-bag-img"
+            />
 
-          {/* Badge 2 — right middle */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={vp}
-            transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="pricing-badge pricing-badge--2"
-            style={{ top: "45%", right: "-5%" }}
-          >
-            Handmade ✋
-          </motion.span>
+            {/* Badge 1 — top left */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={vp}
+              transition={{ delay: 0.4, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="pricing-badge pricing-badge--1"
+              style={{ top: "10%", left: "8%" }}
+            >
+              Eco-Friendly
+            </motion.span>
 
-          {/* Badge 3 — bottom left */}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={vp}
-            transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="pricing-badge pricing-badge--3"
-            style={{ bottom: "20%", left: "-8%" }}
-          >
-            🇮🇩 Local Pride
-          </motion.span>
+            {/* Badge 2 — right middle */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={vp}
+              transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="pricing-badge pricing-badge--2"
+              style={{ top: "45%", right: "6%" }}
+            >
+              Handmade ✋
+            </motion.span>
+
+            {/* Badge 3 — bottom left */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={vp}
+              transition={{ delay: 0.7, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="pricing-badge pricing-badge--3"
+              style={{ bottom: "14%", left: "10%" }}
+            >
+              🇮🇩 Local Pride
+            </motion.span>
+          </motion.div>
         </motion.div>
       </div>
 
