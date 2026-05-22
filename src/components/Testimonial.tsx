@@ -2,6 +2,12 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp, scaleIn, vp } from "@/lib/animations";
+import sitiLeft  from "@/assets/reviewer/SitiRahayu/SitiRahayu1.jpg";
+import sitiRight from "@/assets/reviewer/SitiRahayu/SitiRahayu2.jpg";
+import dewiLeft  from "@/assets/reviewer/DewiAnggarini/DewiAnggarini1.jpg";
+import dewiRight from "@/assets/reviewer/DewiAnggarini/DewiAnggarini2.jpg";
+import rinaLeft  from "@/assets/reviewer/RinaKusuma/RinaKusuma1.jpg";
+import rinaRight from "@/assets/reviewer/RinaKusuma/RinaKusuma2.jpg";
 
 const testimonials = [
   {
@@ -9,24 +15,24 @@ const testimonials = [
       "Tasnya unik banget, beda dari yang lain! Bahannya kuat dan anyamannya rapi. Udah banyak yang nanya beli di mana!",
     name: "Siti Rahayu",
     role: "Mahasiswi",
-    leftImage: "https://i.pravatar.cc/400?img=47",
-    rightImage: "https://i.pravatar.cc/400?img=48",
+    leftImage: sitiLeft,
+    rightImage: sitiRight,
   },
   {
     quote:
       "Harganya terjangkau tapi kualitasnya premium. Suka banget sama konsep eco-friendly nya, bangga pakai produk lokal!",
     name: "Dewi Anggraini",
     role: "Ibu Rumah Tangga",
-    leftImage: "https://i.pravatar.cc/400?img=49",
-    rightImage: "https://i.pravatar.cc/400?img=50",
+    leftImage: dewiLeft,
+    rightImage: dewiRight,
   },
   {
     quote:
       "Pertama lihat langsung jatuh cinta! Warnanya cantik, designnya unik. Cocok buat hangout sampai ke kampus!",
     name: "Rina Kusuma",
     role: "Content Creator",
-    leftImage: "https://i.pravatar.cc/400?img=51",
-    rightImage: "https://i.pravatar.cc/400?img=52",
+    leftImage: rinaLeft,
+    rightImage: rinaRight,
   },
 ];
 
